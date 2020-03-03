@@ -23,9 +23,10 @@ install:
   - pip install -r requirements.txt
   
 before_script:
-# garante que o travis pare no primeiro erro
-#  - set -e
-# dependencias modelsim 
+## garante que o travis pare no primeiro erro
+##  - set -e
+## dependencias modelsim 
+
   - sudo dpkg --add-architecture i386
   - sudo apt-get update
   - sudo apt-get install build-essential
