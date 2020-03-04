@@ -11,6 +11,9 @@ end entity;
 
 architecture arch of Mux16 is
 begin
-
+	with sel select
+		q <= a when '0',
+			b when '1',
+			(others => '0') when others;
 
 end architecture;
