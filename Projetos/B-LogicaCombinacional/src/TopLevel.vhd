@@ -56,7 +56,7 @@ begin
 				"0100001" when "1101",--D
 				"0000110" when "1110",--E
 				"0001110" when "1111",--F
-				"0000001" when others;
+				"1000000" when others;
 
 	with SW(7 downto 4) select
 		Hex1 <= "1111001" when "0001", 
@@ -74,11 +74,11 @@ begin
 			"0100001" when "1101",--D
 			"0000110" when "1110",--E
 			"0001110" when "1111",--F
-			"0000001" when others;
+			"1000000" when others;
 	with SW(9 downto 8) select
 		Hex2 <= "1111001" when "01", --1
 			"0100100" when "10",--2
 			"0110000" when "11",--3
-			"0000001" when others;
+			"1000000" when others;
 
 end rtl;
