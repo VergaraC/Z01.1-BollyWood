@@ -10,5 +10,5 @@ end entity;
 architecture arch of circuito is
 
 begin
-
-end architecture;
+    x <= A and B and (not C);
+end arch;
