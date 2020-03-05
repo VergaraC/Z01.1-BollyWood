@@ -9,5 +9,8 @@ end entity;
 
 architecture arch of sevenSeg is
 begin
+	leds <= "0000001" when (bcd = "0000") else
+		"0000110" when (bcd = "0011") else
+		"0001111" when (bcd = "0111");
 
 end architecture;
