@@ -1,16 +1,22 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
 entity sevenSeg is
-	port (
-			bcd : in  STD_LOGIC_VECTOR(3 downto 0);
-			leds: out STD_LOGIC_VECTOR(6 downto 0));
+    port (
+            bcd : in  STD_LOGIC_VECTOR(3 downto 0);
+            leds: out STD_LOGIC_VECTOR(6 downto 0));
 end entity;
-
 architecture arch of sevenSeg is
 begin
-	leds <= "0000001" when (bcd = "0000") else
-		"0000110" when (bcd = "0011") else
-		"0001111" when (bcd = "0111");
-
+    with bcd select
+    leds <= "1000000" when "0000",
+                  "1111001" when "0001",
+                  "0100100" when "0010",
+                  "0110000" when "0011",
+                  "0011001" when "0100",
+                  "0010010" when "0101",
+                  "0000010" when "0110",
+                  "1111000" when "0111",
+                  "0000000" when "1000",
+                  "0010000" when "1001",
+                  "1000000" when others;
 end architecture;
