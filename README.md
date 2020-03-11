@@ -2,9 +2,11 @@
 
 > Desenvolvendo um computador do ZERO!
 
+>Making a computer from scratch!
+
 Material disponível no [site](https://insper.github.io/Z01.1/)
 
-## Clonando
+## Clonando/ To Clone
 
 ``` bash
 $ # Clone o repositório

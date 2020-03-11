@@ -10,6 +10,12 @@ end entity;
 architecture arch of impressora is
 
 begin
-
+	x <= '0' when (SW1 = '0' AND SW2 = '0' AND SW3 = '0' AND SW4 = '0') else
+	     '0' when (SW1 = '1' AND SW2 = '0' AND SW3 = '0' AND SW4 = '1') else
+             '1' when (SW1 = '1' AND SW2 = '1' AND SW3 = '0' AND SW4 = '0') else
+	     '0' when (SW1 = '0' AND SW2 = '1' AND SW3 = '0' AND SW4 = '0') else
+	     '1' when (SW1 = '0' AND SW2 = '1' AND SW3 = '1' AND SW4 = '0') else
+	     '0' when (SW1 = '0' AND SW2 = '0' AND SW3 = '1' AND SW4 = '0') else
+	     '1' when (SW1 = '0' AND SW2 = '0' AND SW3 = '1' AND SW4 = '1');
 
 end architecture;
