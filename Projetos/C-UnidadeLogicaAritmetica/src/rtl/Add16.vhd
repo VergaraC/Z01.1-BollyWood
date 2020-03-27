@@ -17,9 +17,6 @@ entity Add16 is
 end entity;
 
 architecture rtl of Add16 is
-  -- Aqui declaramos sinais (fios auxiliares)
-  -- e componentes (outros módulos) que serao
-  -- utilizados nesse modulo.
 
   component FullAdder is
     port(
@@ -29,6 +26,5 @@ architecture rtl of Add16 is
   end component;
 
 begin
-  -- Implementação vem aqui!
 
 end architecture;
