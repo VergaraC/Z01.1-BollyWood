@@ -173,5 +173,7 @@ begin
     c => carry(14),
     soma => q(15)
   );
+=======
+>>>>>>> e01e924054ad59fd3fae3fec9a4e6292580cbdee
 
 end architecture;

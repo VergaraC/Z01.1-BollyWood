@@ -122,11 +122,11 @@ begin
 	port map
 	(
 		z => ny,
-		a => zyout,
+		a => y,
 		y => nyout
 	);
 
-	adderoutXY: Add16
+	andXY: And16
 	port map
 	(
 		a => nxout,
@@ -134,7 +134,7 @@ begin
 		q => adderout
 	);
 
-	andoutXY: And16
+	addXY: Add16
 	port map
 	(
 		a => nxout,
@@ -142,7 +142,7 @@ begin
 		q => andout
 	);
 
-	MuxXY: Mux16
+	Mux: Mux16
 	port map
 	(
 		a => andout,
