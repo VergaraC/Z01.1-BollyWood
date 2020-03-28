@@ -7,7 +7,7 @@ use IEEE.STD_LOGIC_1164.all;
 
 entity zerador16 is
   port(
-        z   : in STD_LOGIC;
+        z   : in std_logic;
 	      a   : in STD_LOGIC_VECTOR(15 downto 0);
         y   : out STD_LOGIC_VECTOR(15 downto 0)
       );
@@ -20,5 +20,7 @@ architecture rtl of zerador16 is
 
 begin
   -- Implementação vem aqui!
-
+    with z select
+    y <= "0000000000000000"  when'1',
+          a when others;
 end architecture;
