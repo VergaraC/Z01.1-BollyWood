@@ -59,9 +59,10 @@ architecture  rtl OF alu is
 
 	component Add16 is
 		port(
-			a   : in STD_LOGIC_VECTOR(15 downto 0);
-			b   : in STD_LOGIC_VECTOR(15 downto 0);
-			q   : out STD_LOGIC_VECTOR(15 downto 0)
+			a   	 : in STD_LOGIC_VECTOR(15 downto 0);
+			b   	 : in STD_LOGIC_VECTOR(15 downto 0);
+			carryout : out STD_LOGIC;
+			q   	 : out STD_LOGIC_VECTOR(15 downto 0)
 		);
 	end component;
 
@@ -91,6 +92,7 @@ architecture  rtl OF alu is
 	end component;
 
    SIGNAL zxout,zyout,nxout,nyout,andout,adderout,muxout,precomp: std_logic_vector(15 downto 0);
+   signal carrout: std_logic;
 
 begin
 	
@@ -131,6 +133,7 @@ begin
 	(
 		a => nxout,
 		b => nyout,
+		carryout => carrout,
 		q => adderout
 	);
 
