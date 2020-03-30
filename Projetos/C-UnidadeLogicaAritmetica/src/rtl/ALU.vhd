@@ -33,10 +33,11 @@ entity ALU is
 			nx:    in STD_LOGIC;                     -- inverte a entrada x
 			zy:    in STD_LOGIC;                     -- zera a entrada y
 			ny:    in STD_LOGIC;                     -- inverte a entrada y
-			f:     in STD_LOGIC;                     -- se 0 calcula x & y, senão x + y
+			f:     in STD_LOGIC_VECTOR(1 downto 0);  -- se 0 calcula x & y, senão x + y
 			no:    in STD_LOGIC;                     -- inverte o valor da saída
 			zr:    out STD_LOGIC;                    -- setado se saída igual a zero
 			ng:    out STD_LOGIC;                    -- setado se saída é negativa
+			carry : out std_logic;
 			saida: out STD_LOGIC_VECTOR(15 downto 0) -- saída de dados da ALU
 	);
 end entity;
@@ -59,10 +60,10 @@ architecture  rtl OF alu is
 
 	component Add16 is
 		port(
-			a   	 : in STD_LOGIC_VECTOR(15 downto 0);
-			b   	 : in STD_LOGIC_VECTOR(15 downto 0);
-			carryout : out STD_LOGIC;
-			q   	 : out STD_LOGIC_VECTOR(15 downto 0)
+			a   :  in STD_LOGIC_VECTOR(15 downto 0);
+			b   :  in STD_LOGIC_VECTOR(15 downto 0);
+			q   : out STD_LOGIC_VECTOR(15 downto 0);
+			carryout   : out STD_LOGIC
 		);
 	end component;
 
@@ -79,21 +80,37 @@ architecture  rtl OF alu is
 			a   : in STD_LOGIC_VECTOR(15 downto 0);
 			zr   : out STD_LOGIC;
 			ng   : out STD_LOGIC
-    );
+    	);
 	end component;
 
 	component Mux16 is
 		port (
 			a:   in  STD_LOGIC_VECTOR(15 downto 0);
 			b:   in  STD_LOGIC_VECTOR(15 downto 0);
-			sel: in  STD_LOGIC;
+			c:   in  STD_LOGIC_VECTOR(15 downto 0);
+			d:   in  STD_LOGIC_VECTOR(15 downto 0);
+			sel: in  STD_LOGIC_VECTOR(1 downto 0);
 			q:   out STD_LOGIC_VECTOR(15 downto 0)
 		);
+    end component;
+    
+	component left16 is
+        port (
+			a:   in  STD_LOGIC_VECTOR(15 downto 0);
+			q:   out STD_LOGIC_VECTOR(15 downto 0)
+        );
 	end component;
+	
+	component right16 is
+        port (
+			a:   in  STD_LOGIC_VECTOR(15 downto 0);
+			q:   out STD_LOGIC_VECTOR(15 downto 0)
+        );
+    end component;
 
-   SIGNAL zxout,zyout,nxout,nyout,andout,adderout,muxout,precomp: std_logic_vector(15 downto 0);
-   signal carrout: std_logic;
-
+   SIGNAL zxout,zyout,nxout,nyout,andout,adderout,leftout,rightout,muxout,precomp: STD_LOGIC_VECTOR(15 downto 0);
+   SIGNAL carrout: STD_LOGIC;
+	
 begin
 	
 	zeradorX: zerador16
@@ -128,16 +145,7 @@ begin
 		y => nyout
 	);
 
-	adderoutXY: Add16
-	port map
-	(
-		a => nxout,
-		b => nyout,
-		carryout => carrout,
-		q => adderout
-	);
-
-	andoutXY: And16
+	andXY: And16
 	port map
 	(
 		a => nxout,
@@ -145,11 +153,36 @@ begin
 		q => andout
 	);
 
-	MuxXY: Mux16
+	addXY: Add16
+	port map
+	(
+		a => nxout,
+		b => nyout,
+		q => adderout,
+		carryout => carry
+    );
+
+    leftX: left16
+	port map
+	(
+		a => nxout,
+		q => leftout
+    );
+    
+  rightX: right16
+	port map
+	(
+		a => nxout,
+		q => rightout
+	);
+
+	Mux: Mux16
 	port map
 	(
 		a => andout,
 		b => adderout,
+		c => rightout,
+		d => leftout,
 		sel => f,
 		q => muxout
 	);
