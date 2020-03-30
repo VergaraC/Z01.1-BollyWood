@@ -12,7 +12,6 @@ entity Add16 is
 	port(
 		a        :  in STD_LOGIC_VECTOR(15 downto 0);
 		b        :  in STD_LOGIC_VECTOR(15 downto 0);
-    carryout : out STD_LOGIC;
     q        : out STD_LOGIC_VECTOR(15 downto 0)
 	);
 end entity;
@@ -21,7 +20,7 @@ architecture rtl of Add16 is
   -- Aqui declaramos sinais (fios auxiliares)
   -- e componentes (outros módulos) que serao
   -- utilizados nesse modulo.
-  signal carry : STD_LOGIC_VECTOR(15 DOWNTO 0);
+  signal carry : STD_LOGIC_VECTOR(14 DOWNTO 0);
 
   component FullAdder is
     port(
@@ -172,10 +171,7 @@ begin
     a => a(15),
     b => b(15),
     c => carry(14),
-    soma => q(15),
-    vaium => carry(15)
+    soma => q(15)
   );
-
-  carryout <= carry(15);
 
 end architecture;
