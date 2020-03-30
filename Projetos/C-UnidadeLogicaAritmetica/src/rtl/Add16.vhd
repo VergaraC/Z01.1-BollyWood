@@ -13,7 +13,7 @@ entity Add16 is
 		a   :  in STD_LOGIC_VECTOR(15 downto 0);
 		b   :  in STD_LOGIC_VECTOR(15 downto 0);
     q   : out STD_LOGIC_VECTOR(15 downto 0);
-    c   : out STD_LOGIC
+    carryout   : out STD_LOGIC
 	);
 end entity;
 
@@ -28,6 +28,8 @@ architecture rtl of Add16 is
       soma,vaium: out STD_LOGIC   -- sum e carry
     );
   end component;
+
+  signal carry : STD_LOGIC_VECTOR(15 downto 0);
 
 begin
   -- Implementação vem aqui!
@@ -172,7 +174,7 @@ begin
     b => b(15),
     c => carry(14),
     soma => q(15),
-    vaium => carry(15)
+    vaium => carryout
   );
 
 end architecture;

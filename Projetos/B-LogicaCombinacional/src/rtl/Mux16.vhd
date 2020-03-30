@@ -15,9 +15,9 @@ end entity;
 architecture arch of Mux16 is
 begin
 	with sel select
-		q <= a when "00",
-			b when "01",
-			c when "11",
-			d when others;
+		q <= a when "00", -- and
+			b when "01", -- add
+			c when "11", -- right
+			d when others; -- left
 
 end architecture;

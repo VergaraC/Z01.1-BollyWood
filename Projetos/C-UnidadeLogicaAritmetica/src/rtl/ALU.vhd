@@ -37,6 +37,7 @@ entity ALU is
 			no:    in STD_LOGIC;                     -- inverte o valor da saída
 			zr:    out STD_LOGIC;                    -- setado se saída igual a zero
 			ng:    out STD_LOGIC;                    -- setado se saída é negativa
+			carry : out std_logic;
 			saida: out STD_LOGIC_VECTOR(15 downto 0) -- saída de dados da ALU
 	);
 end entity;
@@ -96,7 +97,6 @@ architecture  rtl OF alu is
 	component left16 is
         port (
 			a:   in  STD_LOGIC_VECTOR(15 downto 0);
-			b:   in  STD_LOGIC_VECTOR(15 downto 0);
 			q:   out STD_LOGIC_VECTOR(15 downto 0)
         );
 	end component;
@@ -108,8 +108,8 @@ architecture  rtl OF alu is
         );
     end component;
 
-   SIGNAL zxout,zyout,nxout,nyout,andout,adderout,leftout,rightout,muxout,precomp: std_logic_vector(15 downto 0);
-   signal carrout: std_logic;
+   SIGNAL zxout,zyout,nxout,nyout,andout,adderout,leftout,rightout,muxout,precomp: STD_LOGIC_VECTOR(15 downto 0);
+   SIGNAL carrout: STD_LOGIC;
 	
 begin
 	
@@ -141,7 +141,7 @@ begin
 	port map
 	(
 		z => ny,
-		a => y,
+		a => zyout,
 		y => nyout
 	);
 
@@ -159,22 +159,20 @@ begin
 		a => nxout,
 		b => nyout,
 		q => adderout,
-		carryout => carrout
+		carryout => carry
     );
 
     leftX: left16
 	port map
 	(
 		a => nxout,
-		b => nyout,
 		q => leftout
     );
     
-    rightX: right16
+  rightX: right16
 	port map
 	(
 		a => nxout,
-		b => nyout,
 		q => rightout
 	);
 
@@ -182,9 +180,9 @@ begin
 	port map
 	(
 		a => andout,
-        b => adderout,
-        c => rightout,
-        d => leftout,
+		b => adderout,
+		c => rightout,
+		d => leftout,
 		sel => f,
 		q => muxout
 	);
