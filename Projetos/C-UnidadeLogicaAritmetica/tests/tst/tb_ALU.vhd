@@ -25,13 +25,15 @@ component ALU is
 			f:     in STD_LOGIC;                     -- se 0 calcula x & y, senão x + y
 			no:    in STD_LOGIC;                     -- inverte o valor da saída
 			zr:    out STD_LOGIC;                    -- setado se saída igual a zero
-			ng:    out STD_LOGIC;                    -- setado se saída é negativa
+      ng:    out STD_LOGIC;                    -- setado se saída é negativa
+      carry : out std_logic;
 			saida: out STD_LOGIC_VECTOR(15 downto 0) -- saída de dados da ALU
 	);
 end component;
 
    signal  inX, inY : STD_LOGIC_VECTOR(15 downto 0);
-   signal  inZX, inNX, inZY, inNY, inF, inNO, outZR, outNG : STD_LOGIC;
+   signal inF : STD_LOGIC_VECTOR(1 downto 0);
+   signal  inZX, inNX, inZY, inNY,  inNO, outZR, outNG, carry : STD_LOGIC;
    signal  outSaida : STD_LOGIC_VECTOR(15 downto 0);
 
 begin
@@ -47,6 +49,7 @@ begin
     no => inNo,
     zr => outZr,
     ng => outNg,
+    carry => carry,
     saida => outsaida);
 
   main : process
@@ -167,6 +170,17 @@ begin
       wait for 200 ps;
       assert(outZR = '0' and outNG = '1' and outSaida= "1111111111111111")  report "Falha em teste: 19" severity error;
 
+      -- Teste: 20 - Testa 5 * 2= 10
+      inX <= "0000000000000101"; inY <= "1111111111111111";
+      inZX <= '0'; inNX <= '0'; inZY <= '0'; inNY <= '0'; inF <= "10"; inNO <= '0';
+      wait for 100 ps;
+      assert(outZR = '0' and outNG = '0' and outSaida= "0000000000001010")  report "Falha em teste: 20, ShiftRight KRL bando de inútil nojeto do krl, tão até parecendo o Guinho! Hashi teria vergonha de vcs!" severity error;
+
+      -- Teste: 21 - Testa 0 * 2 = 0
+      inX <= "0000000000000000"; inY <= "1111111111111111";
+      inZX <= '0'; inNX <= '0'; inZY <= '0'; inNY <= '0'; inF <= "10"; inNO <= '0';
+      wait for 100 ps;
+      assert(outZR = '1' and outNG = '0' and outSaida= "0000000000000000")  report "Falha em teste: 21, ShiftRight KRL bando de inútil nojeto do krl, tão até parecendo o Guinho! Hashi teria vergonha de vcs!" severity error;
 
     test_runner_cleanup(runner); -- Simulacao acaba aqui
 
