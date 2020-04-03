@@ -37,5 +37,5 @@ architecture arch of BinaryDigit is
 	signal dffout,muxout: std_logic;
 
 begin
-
+	
 end architecture;
