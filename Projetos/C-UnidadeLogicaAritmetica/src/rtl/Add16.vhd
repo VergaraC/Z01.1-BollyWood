@@ -173,15 +173,8 @@ begin
     a => a(15),
     b => b(15),
     c => carry(14),
-<<<<<<< HEAD
-    soma => q(15)
-  );
-
-end architecture;
-=======
     soma => q(15),
     vaium => carryout
   );
 
 end architecture;
->>>>>>> 86e874cbd76f54b1c6ff5a6a988f1605ad7c4c77
