@@ -26,7 +26,10 @@ begin
 		elsif (preset = '1') then
 			q <= '1';
 
-		elsif (rising_edge(CLOCK)) then
+		elsif (preset = '1') then
+			q <= '1';
+
+    elsif (rising_edge(CLOCK)) then
 			q<=D;
 		
 		end if;

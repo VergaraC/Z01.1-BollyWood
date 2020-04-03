@@ -58,4 +58,5 @@ begin
 	);
 
 	output <= dffout;
+	
 end architecture;
