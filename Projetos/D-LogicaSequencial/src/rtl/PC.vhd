@@ -3,15 +3,21 @@
 -- file: PC.vhd
 -- date: 4/4/2017
 
+ 
+
 -- Contador de 16bits
 -- if (reset[t] == 1) out[t+1] = 0
 -- else if (load[t] == 1)  out[t+1] = in[t]
 -- else if (inc[t] == 1) out[t+1] = out[t] + 1
 -- else out[t+1] = out[t]
 
+ 
+
 library ieee;
 use ieee.std_logic_1164.all;
 use IEEE.NUMERIC_STD.ALL;
+
+ 
 
 entity PC is
     port(
@@ -20,13 +26,11 @@ entity PC is
         load      : in  STD_LOGIC;
         reset     : in  STD_LOGIC;
         input     : in  STD_LOGIC_VECTOR(15 downto 0);
-        output    : out STD_LOGIC_VECTOR(15 downto 0)
+        output    : out STD_LOGIC_VECTOR(15 downto 0):= "0000000000000000"
     );
 end entity;
 
 architecture arch of PC is
-
- signal muxOut : std_logic_vector(15 downto 0);
 
   component Inc16 is
       port(
@@ -35,16 +39,65 @@ architecture arch of PC is
           );
   end component;
 
-  component Register8 is
-      port(
-          clock:   in STD_LOGIC;
-          input:   in STD_LOGIC_VECTOR(7 downto 0);
-          load:    in STD_LOGIC;
-          output: out STD_LOGIC_VECTOR(7 downto 0)
+ component Mux2Way16 is
+   port (
+     a:   in  STD_LOGIC_VECTOR(15 downto 0);
+     b:   in  STD_LOGIC_VECTOR(15 downto 0);
+     sel: in  STD_LOGIC;
+     q:   out STD_LOGIC_VECTOR(15 downto 0)
+     );
+ end component;
+
+  component Register16 is
+    port(
+        clock:   in STD_LOGIC;
+        input:   in STD_LOGIC_VECTOR(15 downto 0);
+        load:    in STD_LOGIC;
+        output: out STD_LOGIC_VECTOR(15 downto 0)
+      );
+   end component;
+
+   signal PCout,Incout,MuxIncout,MuxLoadout,MuxResetout : std_logic_vector(15 downto 0):= "0000000000000000";
+
+   begin
+
+    Inc: Inc16
+    port map(
+        a => PCout,
+        q => Incout
+    );
+
+    MuxInc: Mux2Way16
+    port map(
+        a => PCout,
+        b => Incout,
+        sel => increment,
+        q => MuxIncout
         );
-    end component;
+    MuxLoad: Mux2Way16
+    port map(
+        a => MuxIncout,
+        b => input,
+        sel => load,
+        q => MuxLoadout
+    );
+    MuxReset: Mux2Way16
+    port map(
+        a => MuxLoadout,
+        b => "0000000000000000",
+        sel => reset,
+        q => MuxResetout
+        );
+    Reg16: Register16
+    port map(
+        clock => clock,
+        input => MuxResetout,
+        load => '1',
+        output => PCout 
+      );
+    output <= PCout;
+    
 
-begin
-
+   
 
 end architecture;
