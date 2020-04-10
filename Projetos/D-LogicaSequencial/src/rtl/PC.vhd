@@ -30,7 +30,11 @@ entity PC is
     );
 end entity;
 
+ 
+
 architecture arch of PC is
+
+ 
 
   component Inc16 is
       port(
@@ -38,6 +42,8 @@ architecture arch of PC is
           q   : out STD_LOGIC_VECTOR(15 downto 0)
           );
   end component;
+
+ 
 
  component Mux2Way16 is
    port (
@@ -48,6 +54,8 @@ architecture arch of PC is
      );
  end component;
 
+ 
+
   component Register16 is
     port(
         clock:   in STD_LOGIC;
@@ -57,45 +65,16 @@ architecture arch of PC is
       );
    end component;
 
-   signal PCout,Incout,MuxIncout,MuxLoadout,MuxResetout : std_logic_vector(15 downto 0):= "0000000000000000";
+   SIGNAL pcout, incout, muxincout, muxloadout, muxresetout: STD_LOGIC_VECTOR (15 downto 0):= "0000000000000000";
 
-   begin
+begin
 
-    Inc: Inc16
-    port map(
-        a => PCout,
-        q => Incout
-    );
+  INC: Inc16 port map (pcout, incout);
+  MUXINC: Mux2Way16 port map(pcout, incout, increment, muxincout);
+  MUXLOAD: Mux2Way16 port map(muxincout, input, load, muxloadout);
+  MUXRESET: Mux2Way16 port map(muxloadout, "0000000000000000", reset, muxresetout);
+  REGISTER1: Register16 port map (clock, muxresetout, '1', pcout);
+  output <= pcout;
 
-    MuxInc: Mux2Way16
-    port map(
-        a => PCout,
-        b => Incout,
-        sel => increment,
-        q => MuxIncout
-        );
-    MuxLoad: Mux2Way16
-    port map(
-        a => MuxIncout,
-        b => input,
-        sel => load,
-        q => MuxLoadout
-    );
-    MuxReset: Mux2Way16
-    port map(
-        a => MuxLoadout,
-        b => "0000000000000000",
-        sel => reset,
-        q => MuxResetout
-        );
-    Reg16: Register16
-    port map(
-        clock => clock,
-        input => MuxResetout,
-        load => '1',
-        output => PCout 
-      );
-    output <= PCout;
-   
 
 end architecture;
