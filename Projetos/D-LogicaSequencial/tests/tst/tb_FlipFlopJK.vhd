@@ -13,7 +13,7 @@ end entity;
 
 architecture tb of tb_FlipFlopT is
 
-	component FlipFlopJK is
+    component FlipFlopJK is
     port(
       clock:  in std_logic;
       J:      in std_logic;
@@ -21,28 +21,45 @@ architecture tb of tb_FlipFlopT is
       q:      out std_logic:= '0';
       notq:   out std_logic:= '1'
       );
-	end component;
+    end component;
 
-	signal clk : std_logic := '0';
+    signal clk : std_logic := '0';
   signal j,k,q,notq : std_logic;
 
 begin
 
-	mapping: FlipFlopJK port map(clk, j, k, q, notq);
+    mapping: FlipFlopJK port map(clk, j, k, q, notq);
 
-	clk <= not clk after 100 ps;
+    clk <= not clk after 100 ps;
 
   main : process
   begin
     test_runner_setup(runner, runner_cfg);
 
     -- IMPLEMENTE AQUI!
+    j <= '0'; k <= '0';
     wait until clk'event and clk='0';
+    assert(q = q)  report "Falha em teste: 0" severity error;
+
+    j <= '0'; k <= '1';
+    wait until clk'event and clk='0';
+    assert(q = '0')  report "Falha em teste: 0" severity error;
+
+
+    j <= '1'; k <= '0';
+    wait until clk'event and clk='0';
+    assert(q = '1')  report "Falha em teste: 0" severity error;
+
+
+    j <= '1'; k <= '1';
+    wait until clk'event and clk='0';
+    assert(q = notq)  report "Falha em teste: 0" severity error;
+
 
     -- finish
     wait until clk'event and clk='0';
     test_runner_cleanup(runner); -- Simulation ends here
 
-	wait;
+    wait;
   end process;
 end architecture;

@@ -3,7 +3,7 @@
   
 #FlipFlopD.vhd
 #BinaryDigit.vhd
-#PC.vhd
+PC.vhd
 #Register8.vhd
 #Register16.vhd
 #Register32.vhd
@@ -11,12 +11,12 @@
 #Ram8.vhd
 #Ram64.vhd
 #Ram512.vhd
-Ram4K.vhd
+#Ram4K.vhd
 
 ########
 # Rubrica A
 #
-#FlipFlopT.vhd
-#FlipFlopJK.vhd
+FlipFlopT.vhd
+FlipFlopJK.vhd
 #CounterDown.vhd
  
