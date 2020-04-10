@@ -39,7 +39,6 @@ architecture arch of PC is
           );
   end component;
 
-<<<<<<< HEAD
  component Mux2Way16 is
    port (
      a:   in  STD_LOGIC_VECTOR(15 downto 0);
@@ -97,8 +96,6 @@ architecture arch of PC is
         output => PCout 
       );
     output <= PCout;
-    
-
    
 
 end architecture;
