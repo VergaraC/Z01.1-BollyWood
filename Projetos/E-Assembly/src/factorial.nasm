@@ -9,16 +9,17 @@ LOOP:
     leaw $0, %A
     movw (%A), %D
     movw %D, $Atual
-    leaw $END, %A
+    leaw $END, %A ;checa se é nulo
     je %D
     nop
-    leaw $1, %A
+    leaw $0, %A 
     movw (%A), %D
-    movw %D, $Atual
+    movw %D, $Atual ;Atual=valor q vai ser multiplucado agora
     leaw $END2, %A
     je %D
     nop
     LOOP:
+        leaw $Atual, %A
         addw %D,(%A), %D
         movw %D, (%A)
         leaw $0, %A
