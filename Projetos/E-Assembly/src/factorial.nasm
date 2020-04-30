@@ -26,10 +26,14 @@ LOOP:
     movw (%A), %D
     leaw $Atual, %A
     movw %D, (%A) ;Atual=valor q vai ser multiplucado com o valor em RAM 1 agora
-    leaw $END2, %A
-    je %D
-    nop
+    
+
     WHILE:
+        leaw $Atual, %A
+        movw (%A), %D
+        leaw $END2, %A
+        je %D
+        nop
         leaw $1, %A
         movw (%A), %D
         leaw $Atual, %A
@@ -43,6 +47,6 @@ LOOP:
         jmp
         nop
     END2:
-        jmp
+        jmp             ;Problemas com esse JUMP
         nop
 END:
