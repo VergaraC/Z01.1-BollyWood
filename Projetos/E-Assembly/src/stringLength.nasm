@@ -25,7 +25,7 @@
 ;  RAM[13] = `z`
 ;  RAM[14] = `?`
 ;  RAM[15] = NULL = 0x0000
-leaw $1, %A
+leaw $8, %A
 movw %A, %D
 leaw $9000, %A
 movw %D, (%A)
@@ -53,6 +53,8 @@ END:
     leaw $9000, %A 
     movw (%A), %D
     decw %D
+    leaw $7, %A
+    subw %D, %A, %D
     leaw $0, %A
     movw %D,(%A)
 
