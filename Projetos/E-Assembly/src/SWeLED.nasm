@@ -63,47 +63,47 @@ movw %D, (%A)
 leaw $END1,%A
 jl
 nop
-
+leaw $118,%A
 
 
 END9:
-leaw %21185, %A
+leaw $21185, %A
 movw (%A), %D
 leaw $10, %A
 END8:
-leaw %21185, %A
+leaw $21185, %A
 movw (%A), %D
 leaw $17, %A
 END7:
-leaw %21185, %A
+leaw $21185, %A
 movw (%A), %D
 leaw $24, %A
 END6:
-leaw %21185, %A
+leaw $21185, %A
 movw (%A), %D
 leaw $31, %A
 END5:
-leaw %21185, %A
+leaw $21185, %A
 movw (%A), %D
 leaw $38, %A
 END4:
-leaw %21185, %A
+leaw $21185, %A
 movw (%A), %D
-leaw $45, %A    
+leaw $45, %A
 END3:
 leaw $8, %A
 movw %A,%D
 leaw $21184, %A
 addw %D, (%A), (%A)
-leaw %21185, %A
+leaw $21185, %A
 movw (%A), %D
-leaw $52, %A  
+leaw $52, %A
 END2:
 leaw $4, %A
 movw %A,%D
 leaw $21184, %A
 addw %D, (%A), (%A)
-leaw %21185, %A
+leaw $21185, %A
 movw (%A), %D
 leaw $59, %A 
 END1:
@@ -111,7 +111,7 @@ leaw $2, %A
 movw %A,%D
 leaw $21184, %A
 addw %D, (%A), (%A)
-leaw %21185, %A
+leaw $21185, %A
 movw (%A), %D
 
 
