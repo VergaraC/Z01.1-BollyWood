@@ -9,3 +9,12 @@
 
 
 
+;leaw $496, %A
+;movw %A, %D
+;leaw $21184, %A
+;movw %D, (%A)
+
+leaw $14, %A
+movw %A, %D
+leaw $21185, %A
+movw %D, (%A)
