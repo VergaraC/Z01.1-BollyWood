@@ -154,4 +154,7 @@ markdown_extensions:
 plugins:
     - search
 #    - pdf-export
+- name: Issue Dashboard
+  uses: ethomson/issue-dashboard@v1.0.2
+
 
