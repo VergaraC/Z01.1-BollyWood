@@ -19,3 +19,81 @@
 ; RAM[7]:  1  | RAM[7]:  1 |
 ; RAM[8]:  4  | RAM[8]:  4 -
 ; ------------------------------------
+
+leaw $5, %A
+movw %A, %D
+leaw $15000, %A
+movw %D, (%A)
+leaw $4, %A
+movw (%A), %D
+leaw $10000, %A
+movw %D, (%A)
+
+SOMA:
+leaw $15000, %A
+movw (%A), %D
+movw %D, %A
+movw (%A), %D
+leaw $2, %A
+addw (%A), %D, %D
+movw %D, (%A)
+
+leaw $15000, %A
+movw (%A), %D
+incw %D
+movw %D, (%A)
+
+leaw $10000, %A
+movw (%A), %D
+decw %D
+movw %D, (%A)
+
+leaw $FIMSOMA, %A
+je %D
+nop
+
+leaw $SOMA, %A
+jmp
+nop
+
+FIMSOMA:
+leaw $2, %A
+movw (%A), %D
+leaw $1, %A
+movw %D, (%A)
+
+leaw $1, %A
+movw (%A), %D
+leaw $3, %A
+movw %D, (%A)
+
+MEDIA:
+leaw $3, %A
+movw (%A), %D
+leaw $4, %A
+subw %D, (%A), %D
+
+leaw $3, %A
+movw %D, (%A)
+
+leaw $12000, %A
+movw (%A), %D
+incw %D
+movw %D, (%A)
+
+leaw $3, %A
+movw (%A), %D
+
+leaw $FIMMEDIA, %A
+jle %D
+nop
+
+leaw $MEDIA, %A
+jmp
+nop
+
+FIMMEDIA:
+leaw $12000, %A
+movw (%A), %D
+leaw $0, %A
+movw %D, (%A)
