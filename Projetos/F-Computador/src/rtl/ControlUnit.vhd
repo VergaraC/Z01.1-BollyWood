@@ -36,6 +36,8 @@ begin
 
     loadA <= not instruction(17) or instruction(3);
 
-    muxALUI_A <= '1' when instruction(17) = '0' else '1';
+    muxALUI_A <= '1' when instruction(17) = '0' else '0';
+
+    zx <= instruction(17) and not instruction(13) and instruction(12);
 
 end architecture;
