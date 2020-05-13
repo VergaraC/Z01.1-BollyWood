@@ -99,5 +99,7 @@ architecture arch of CPU is
   signal s_pcout: STD_LOGIC_VECTOR(15 downto 0);
 
 begin
+ 
+  ProgramCounter: pc port map(clock, increment, loadPC,reset,input, s_pcout);
 
 end architecture;
