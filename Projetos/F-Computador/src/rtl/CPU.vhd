@@ -87,7 +87,7 @@ architecture arch of CPU is
   signal c_loadA: STD_LOGIC;
   signal c_loadD: STD_LOGIC;
   signal c_loadPC: STD_LOGIC;
-  signal Load_muxALUI_A: STD_LOGIC; --Criado por Vergara
+
   signal c_zr: std_logic := '0';
   signal c_ng: std_logic := '0';
 
@@ -96,22 +96,24 @@ architecture arch of CPU is
   signal s_regAout: STD_LOGIC_VECTOR(15 downto 0);
   signal s_regDout: STD_LOGIC_VECTOR(15 downto 0);
   signal s_ALUout: STD_LOGIC_VECTOR(15 downto 0);
-
   signal s_pcout: STD_LOGIC_VECTOR(15 downto 0);
   
 
 begin
  
-  Load_muxALUI_A <= '1' when instruction(17) = '0' else '0';
+  ControlUnit: ControlUnit port map (instruction,zr,ng,c_muxALUI_A); --Checar o zr e o ng
 
   ProgramCounter: pc port map(clock, increment, loadPC,reset,s_regAout, pcout);
 
-  MuxAM_D: Mux16 port map (s_regAout,inM,INSTRUCION_CRIAR,s_muxAM_out); --Criar o seletor 
+  MuxAM_D: Mux16 port map (s_regAout,inM,c_muxAM,s_muxAM_out);  
 
-  MuxALUI_A: Mux16 port map (s_ALUout,instruction,Load_muxALUI_A,s_muxALUI_Aout);
+  MuxALUI_A: Mux16 port map (s_ALUout,instruction,c_muxALUI_A,s_muxALUI_Aout);
 
-  ALU: ALU port map (C_loadD,s_muxAM_out,zx,nx,zy,ny,f,no,zr,ng,s_ALUout); --Continuar Despois, precisa de todos os seus Instructions
+  ALU: ALU port map (C_loadD,s_muxAM_out,zx,nx,zy,ny,f,no,zr,ng,s_ALUout); --Continuar Despois, precisa de todos os seus Instructions pegos no ControlUnit
 
+  RegisterA : Register16 port map (clock,s_muxALUI_Aout,c_loadA,s_regAout);
+
+  RegisterD : Register16 port map (clock,s_ALUout,c_loadD,s_regDout);
 
   addressM <=  s_regAout;
   
