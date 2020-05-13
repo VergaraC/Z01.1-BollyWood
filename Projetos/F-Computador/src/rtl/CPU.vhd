@@ -87,6 +87,7 @@ architecture arch of CPU is
   signal c_loadA: STD_LOGIC;
   signal c_loadD: STD_LOGIC;
   signal c_loadPC: STD_LOGIC;
+  signal Load_muxALUI_A: STD_LOGIC; --Criado por Vergara
   signal c_zr: std_logic := '0';
   signal c_ng: std_logic := '0';
 
@@ -97,9 +98,21 @@ architecture arch of CPU is
   signal s_ALUout: STD_LOGIC_VECTOR(15 downto 0);
 
   signal s_pcout: STD_LOGIC_VECTOR(15 downto 0);
+  
 
 begin
  
-  ProgramCounter: pc port map(clock, increment, loadPC,reset,input, s_pcout);
+  Load_muxALUI_A <= '1' when instruction(17) = '0' else '0';
 
+  ProgramCounter: pc port map(clock, increment, loadPC,reset,s_regAout, pcout);
+
+  MuxAM_D: Mux16 port map (s_regAout,inM,INSTRUCION_CRIAR,s_muxAM_out); --Criar o seletor 
+
+  MuxALUI_A: Mux16 port map (s_ALUout,instruction,Load_muxALUI_A,s_muxALUI_Aout);
+
+  ALU: ALU port map (C_loadD,s_muxAM_out,zx,nx,zy,ny,f,no,zr,ng,s_ALUout); --Continuar Despois, precisa de todos os seus Instructions
+
+
+  addressM <=  s_regAout;
+  
 end architecture;
