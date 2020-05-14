@@ -101,20 +101,22 @@ architecture arch of CPU is
 
 begin
  
-  ControlUnit: ControlUnit port map (instruction,zr,ng,c_muxALUI_A); --Checar o zr e o ng
+  ControlUnit: ControlUnit port map (instruction,c_zr,c_ng,c_muxALUI_A,c_muxAM,c_zx,c_nx,c_zy,c_ny,c_f,c_no,loadA,loadD,writeM,loadPC);
 
-  ProgramCounter: pc port map(clock, increment, loadPC,reset,s_regAout, pcout);
+  ProgramCounter: pc port map(clock, increment, loadPC,reset,s_regAout, s_pcout);
 
   MuxAM_D: Mux16 port map (s_regAout,inM,c_muxAM,s_muxAM_out);  
 
   MuxALUI_A: Mux16 port map (s_ALUout,instruction,c_muxALUI_A,s_muxALUI_Aout);
 
-  ALU: ALU port map (C_loadD,s_muxAM_out,zx,nx,zy,ny,f,no,zr,ng,s_ALUout); --Continuar Despois, precisa de todos os seus Instructions pegos no ControlUnit
-
+  ALU: ALU port map (C_loadD,s_muxAM_out,c_zx,c_nx,c_zy,c_ny,c_f,c_no,c_zr,c_ng,s_ALUout); 
   RegisterA : Register16 port map (clock,s_muxALUI_Aout,c_loadA,s_regAout);
 
   RegisterD : Register16 port map (clock,s_ALUout,c_loadD,s_regDout);
 
+  --setando algumas saidas--
   addressM <=  s_regAout;
+  outM <= s_ALUout;
+  pcout <= s_pcout;
   
 end architecture;
