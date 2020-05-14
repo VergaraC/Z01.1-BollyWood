@@ -45,7 +45,7 @@ je %D
 incw %D
 leaw $21184,%A
 orw %D,(%A), (%A) ;SW 0 Feito
-
+;Sem jmp de propósito pra fazer a parte das RAMs
 RAM:
     ;Tentativa de AND
 
