@@ -6,7 +6,7 @@
 ; LED = SW[8] !SW[7] OFF ON ON RAM[5][3] ON SW[0] OFF
 ;
 ;                                ^            ^
-;                                | TRUQUE!(Um AND?)    | TRUQUE!(igual ao normal ai fazer um if =1 then +1)
+;                                | TRUQUE!(PEgar o bit 3 do RAM5)    | TRUQUE!(igual ao normal ai fazer um if =1 then +1)
 ;Sacanagem esse ai
 
 ; 4+16+32=52 valor Fixo do LEDs ligados
@@ -49,12 +49,15 @@ orw %D,(%A), (%A) ;SW 0 Feito
 ;Sem jmp de propósito pra fazer a parte das RAMs
 RAM:
     ;Tentativa de AND
-
     leaw $5, %A
     movw (%A), %D
-    leaw $3, %A
-    andw (%A), %D, %D
-    ;Mano n faz sentido ser AND WTF
+    leaw $8, %A ;So o bit 3
+    andw %A, %D, %D
+    leaw $21184, %A 
+    movw (%A), %A
+    orw %A, %D, %D
+    leaw $21184, %A
+    movw %D, (%A)
 
 
 
