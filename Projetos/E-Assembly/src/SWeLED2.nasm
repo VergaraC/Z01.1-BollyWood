@@ -42,6 +42,7 @@ leaw $21185, %A
 andw (%A), %D, %D 
 leaw $RAM, %A
 je %D
+nop
 incw %D
 leaw $21184,%A
 orw %D,(%A), (%A) ;SW 0 Feito
