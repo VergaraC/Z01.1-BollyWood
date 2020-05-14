@@ -5,8 +5,8 @@
 ; Faça os LEDs exibirem 
 ; LED = SW[8] !SW[7] OFF ON ON RAM[5][3] ON SW[0] OFF
 ;
-;                                ^            ^
-;                                | TRUQUE!(PEgar o bit 3 do RAM5)    | TRUQUE!(igual ao normal ai fazer um if =1 then +1)
+;                                ^            ^-------------------------|
+;                                | TRUQUE!(Pegar o bit 3 do RAM5)    | TRUQUE!(igual ao normal ai fazer um if =1 then +1)
 ;Sacanagem esse ai
 
 ; 4+16+32=52 valor Fixo do LEDs ligados
