@@ -36,18 +36,20 @@ begin
 
     loadA <= not instruction(17) or instruction(3);
     
-    --Todos com Jump
-    loadPC <= 
-    '1' when instruction(2 downto 0) = "001" and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "010" and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "100" and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "011"  and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "101" and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "110" and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "111" and instruction(17) = '1' else '0';
-
     muxALUI_A <= '1' when instruction(17) = '0' else '0';
 
-    zx <= instruction(17) and not instruction(13) and instruction(12);
+  zx <= instruction(17) and instruction(12);
 
+  nx <= instruction(17) and instruction(11);
+
+  zy <= instruction(17) and instruction(10);
+
+  ny <= instruction(17) and instruction(9);
+
+  f  <= instruction(17) and instruction(8);
+
+  no <= instruction(17) and instruction(7);
+
+
+    loadPC <= '0'; --Certo com o Vergara esperar a parte do JUMP
 end architecture;
