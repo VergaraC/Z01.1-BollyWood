@@ -36,7 +36,7 @@ leaw $65407, %A ;2^16 -128 -1
 subw %D, %A, %D
 leaw $21184,%A
 orw %D,(%A), (%A) ;SW 7 Feito
-;SW[8] !SW[7] 0 1 1 0 1 SW[0] 0
+;SW[8] !SW[7] 0 1 1 0 1 0 0
 ;Tentativa SW 0
 
 movw $1, %D ;1 só no bit 0
@@ -49,7 +49,7 @@ incw %D
 leaw $21184,%A
 orw %D,(%A), (%A) ;SW 0 Feito
 ;Sem jmp de propósito pra fazer a parte das RAMs
-;SW[8] !SW[7] 0 1 1 0 1 0 0
+;SW[8] !SW[7] 0 1 1 0 1 Sw[0] 0
 
 RAM:
     ;Tentativa de AND
