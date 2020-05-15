@@ -38,17 +38,12 @@ begin
     
     --Todos com Jump
     loadPC <= 
-    '1' when instruction(2 downto 0) = "001" and ng = '0' and zr = '0' and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "010" and ng = '0' and zr = '1' and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "100" and ng = '1' and zr = '0' and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "011" and ng = '0' and zr = '0' and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "011" and ng = '0' and zr = '1' and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "011" and ng = '1' and zr = '1' and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "101" and ng = '0' and zr = '0' and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "101" and ng = '1' and zr = '0' and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "110" and ng = '1' and zr = '0' and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "101" and ng = '1' and zr = '1' and instruction(17) = '1' else
-    '1' when instruction(2 downto 0) = "010" and ng = '1' and zr = '1' and instruction(17) = '1' else
+    '1' when instruction(2 downto 0) = "001" and instruction(17) = '1' else
+    '1' when instruction(2 downto 0) = "010" and instruction(17) = '1' else
+    '1' when instruction(2 downto 0) = "100" and instruction(17) = '1' else
+    '1' when instruction(2 downto 0) = "011"  and instruction(17) = '1' else
+    '1' when instruction(2 downto 0) = "101" and instruction(17) = '1' else
+    '1' when instruction(2 downto 0) = "110" and instruction(17) = '1' else
     '1' when instruction(2 downto 0) = "111" and instruction(17) = '1' else '0';
 
     muxALUI_A <= '1' when instruction(17) = '0' else '0';
