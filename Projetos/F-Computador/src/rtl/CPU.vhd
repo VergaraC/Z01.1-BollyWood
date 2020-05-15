@@ -14,8 +14,8 @@ entity CPU is
     instruction: in  STD_LOGIC_VECTOR(17 downto 0);    -- instrução (dados) vindos da memória ROM
     outM:        out STD_LOGIC_VECTOR(15 downto 0);    -- dados para gravar na memória RAM
     writeM:      out STD_LOGIC;                        -- faz a memória RAM gravar dados da entrada
-    addressM:    out STD_LOGIC_VECTOR(14 downto 0);    -- envia endereço para a memória RAM
-    pcout:       out STD_LOGIC_VECTOR(14 downto 0)     -- endereço para ser enviado a memória ROM
+    addressM:    out STD_LOGIC_VECTOR(15 downto 0);    -- envia endereço para a memória RAM
+    pcout:       out STD_LOGIC_VECTOR(15 downto 0)     -- endereço para ser enviado a memória ROM
     );
 end entity;
 
@@ -101,22 +101,24 @@ architecture arch of CPU is
 
 begin
  
-  ControlUnit: ControlUnit port map (instruction,c_zr,c_ng,c_muxALUI_A,c_muxAM,c_zx,c_nx,c_zy,c_ny,c_f,c_no,loadA,loadD,writeM,loadPC);
 
-  ProgramCounter: pc port map(clock, increment, loadPC,reset,s_regAout, s_pcout);
+ControlUnitCorno: ControlUnit port map (instruction,c_zr,c_ng,c_muxALUI_A,c_muxAM,c_zx,c_nx,c_zy,c_ny,c_f,c_no,c_loadA,c_loadD,writeM,C_loadPC);
 
-  MuxAM_D: Mux16 port map (s_regAout,inM,c_muxAM,s_muxAM_out);  
+ProgramCounter: pc port map(clock, '1', c_loadPC,reset,s_regAout, s_pcout); --Increment pronblemas
 
-  MuxALUI_A: Mux16 port map (s_ALUout,instruction,c_muxALUI_A,s_muxALUI_Aout);
+MuxAM_D: Mux16 port map (s_regAout,inM,c_muxAM,s_muxAM_out);  
 
-  ALU: ALU port map (C_loadD,s_muxAM_out,c_zx,c_nx,c_zy,c_ny,c_f,c_no,c_zr,c_ng,s_ALUout); 
-  RegisterA : Register16 port map (clock,s_muxALUI_Aout,c_loadA,s_regAout);
+MuxALUI_A: Mux16 port map (s_ALUout,instruction(15 downto 0),c_muxALUI_A,s_muxALUI_Aout);
 
-  RegisterD : Register16 port map (clock,s_ALUout,c_loadD,s_regDout);
+ULA: ALU port map (s_regDout,s_muxAM_out,c_zx,c_nx,c_zy,c_ny,c_f,c_no,c_zr,c_ng,s_ALUout); 
 
-  --setando algumas saidas--
-  addressM <=  s_regAout;
-  outM <= s_ALUout;
-  pcout <= s_pcout;
+RegisterA : Register16 port map (clock,s_muxALUI_Aout,c_loadA,s_regAout);
+
+RegisterD : Register16 port map (clock,s_ALUout,c_loadD,s_regDout);
+
+--setando algumas saidas--
+addressM <=  s_regAout;
+outM <= s_ALUout;
+pcout <= s_pcout;
   
 end architecture;
