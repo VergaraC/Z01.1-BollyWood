@@ -23,6 +23,7 @@ architecture tb of tb_ControlUnit is
         muxAM                       : out STD_LOGIC;                     -- mux que seleciona entre reg. A e Mem. RAM para ALU
         zx, nx, zy, ny, f, no       : out STD_LOGIC;                     -- sinais de controle da ALU
         loadA, loadD, loadM, loadPC : out STD_LOGIC;                      -- sinais de load do reg. A, reg. D, Mem. RAM e Program Counter
+        
         muxSD                       : out STD_LOGIC; --conceito B
         loadS                       : out STD_LOGIC --conceito B
         );
@@ -35,7 +36,8 @@ architecture tb of tb_ControlUnit is
   signal muxALUI_A                   : STD_LOGIC := '0';
   signal muxSD                       : STD_LOGIC := '0';
   signal zx, nx, zy, ny, f, no       : STD_LOGIC := '0';
-  signal loadA, loadD,  loadM, loadPC, loadS : STD_LOGIC := '0';
+  signal loadA, loadD,  loadM, loadPC  : STD_LOGIC := '0';
+  signal  loadS                      :STD_LOGIC := '0';
 
 begin
 

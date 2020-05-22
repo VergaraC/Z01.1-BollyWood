@@ -21,9 +21,9 @@ V?DI;DQ2DnPiICDLbSYJcc1
 !s100 b:ia=L87hJ@>i?koZ:e=Z3
 Z6 OV;C;10.5b;63
 32
-Z7 !s110 1590172932
+Z7 !s110 1590174081
 !i10b 1
-Z8 !s108 1590172932.000000
+Z8 !s108 1590174081.000000
 Z9 !s90 -reportprogress|300|-work|work|../../C-UnidadeLogicaAritmetica/src/rtl/ALU.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/ALU_C.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Add16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/FullAdder.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/HalfAdder.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Inc16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Mux2Way.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Mux2Way16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Xor16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/comparador16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/inversor16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/left16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/right16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/zerador16.vhd|
 Z10 !s107 ../../C-UnidadeLogicaAritmetica/src/rtl/zerador16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/right16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/left16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/inversor16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/comparador16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Xor16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Mux2Way16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Mux2Way.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Inc16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/HalfAdder.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/FullAdder.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Add16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/ALU_C.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/ALU.vhd|
 !i113 1
@@ -462,9 +462,9 @@ V^<T_kEk4AEg2XQQdZNHhg3
 !s100 TNE09aYh8d4DH0B==1NGH3
 R6
 32
-Z49 !s110 1590172933
+Z49 !s110 1590174082
 !i10b 1
-Z50 !s108 1590172933.000000
+Z50 !s108 1590174082.000000
 Z51 !s90 -reportprogress|300|-work|work|../tests/Computador_tb.vhd|
 Z52 !s107 ../tests/Computador_tb.vhd|
 !i113 1
@@ -490,7 +490,7 @@ R52
 R11
 R12
 Econtrolunit
-Z56 w1590171844
+Z56 w1590173589
 R1
 R2
 R3
@@ -529,7 +529,7 @@ R60
 R11
 R12
 Ecpu
-Z61 w1590172081
+Z61 w1590173668
 R1
 R2
 R3
@@ -1836,7 +1836,7 @@ V?W3fU8AJPJ2S[;=PMJaMU1
 !s100 Pe>;JD`:?:`O3@C?zeRZV0
 R6
 32
-R49
+R7
 !i10b 1
 R8
 Z154 !s90 -reportprogress|300|-work|work|../src/rtl/Dispositivos/RAM/RAM16K.vho|../src/rtl/Dispositivos/RAM/RAM32K.vho|
@@ -1855,7 +1855,7 @@ VHVVU?WRO;S54PX[0FX@@_0
 !s100 a1[;a0YD4?OYG@<KKKFiD3
 R6
 32
-R49
+R7
 !i10b 1
 R8
 R154
@@ -1877,7 +1877,7 @@ VZz90P3gMlXY<Y^0ZI4JhN2
 !s100 gHKS[J7KSXWja8?lC_GIM0
 R6
 32
-R49
+R7
 !i10b 1
 R8
 R154
@@ -1896,7 +1896,7 @@ VZKcceD7o?f8d3Fb_2IGQ]2
 !s100 9mU84TiDOTSUQM:VaX_d>3
 R6
 32
-R49
+R7
 !i10b 1
 R8
 R154
@@ -2271,7 +2271,7 @@ R6
 32
 R49
 !i10b 1
-R50
+R8
 Z178 !s90 -reportprogress|300|-work|work|../src/rtl/Dispositivos/ROM/ROM32K.vhd|
 Z179 !s107 ../src/rtl/Dispositivos/ROM/ROM32K.vhd|
 !i113 1
@@ -2290,7 +2290,7 @@ R6
 32
 R49
 !i10b 1
-R50
+R8
 R178
 R179
 !i113 1
