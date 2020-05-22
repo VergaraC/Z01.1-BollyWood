@@ -38,6 +38,8 @@ begin
     
     muxALUI_A <= '1' when instruction(17) = '0' else '0';
 
+    muxAM <= instruction(17) and instruction(13);
+
     zx <= instruction(17) and instruction(12);
 
     nx <= instruction(17) and instruction(11);
