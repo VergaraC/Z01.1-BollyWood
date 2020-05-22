@@ -21,9 +21,9 @@ V?DI;DQ2DnPiICDLbSYJcc1
 !s100 b:ia=L87hJ@>i?koZ:e=Z3
 Z6 OV;C;10.5b;63
 32
-Z7 !s110 1590172020
+Z7 !s110 1590172932
 !i10b 1
-Z8 !s108 1590172020.000000
+Z8 !s108 1590172932.000000
 Z9 !s90 -reportprogress|300|-work|work|../../C-UnidadeLogicaAritmetica/src/rtl/ALU.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/ALU_C.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Add16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/FullAdder.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/HalfAdder.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Inc16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Mux2Way.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Mux2Way16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Xor16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/comparador16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/inversor16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/left16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/right16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/zerador16.vhd|
 Z10 !s107 ../../C-UnidadeLogicaAritmetica/src/rtl/zerador16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/right16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/left16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/inversor16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/comparador16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Xor16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Mux2Way16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Mux2Way.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Inc16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/HalfAdder.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/FullAdder.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/Add16.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/ALU_C.vhd|../../C-UnidadeLogicaAritmetica/src/rtl/ALU.vhd|
 !i113 1
@@ -421,11 +421,11 @@ Vh7GbNN6@;8Qe?c5?hOa4?1
 !s100 Yc1foIZGHVIYTZW9EVGbb2
 R6
 32
-Z45 !s110 1590172021
+R7
 !i10b 1
-Z46 !s108 1590172021.000000
-Z47 !s90 -reportprogress|300|-work|work|../src/rtl/Computador.vhd|
-Z48 !s107 ../src/rtl/Computador.vhd|
+R8
+Z45 !s90 -reportprogress|300|-work|work|../src/rtl/Computador.vhd|
+Z46 !s107 ../src/rtl/Computador.vhd|
 !i113 1
 R11
 R12
@@ -440,11 +440,11 @@ VVenL1QHm0>kB241B4?m^g0
 !s100 cZiSRKAd7XX5T42iUioZz3
 R6
 32
-R45
+R7
 !i10b 1
+R8
+R45
 R46
-R47
-R48
 !i113 1
 R11
 R12
@@ -454,17 +454,17 @@ R24
 R1
 R2
 R3
-Z49 8../tests/Computador_tb.vhd
-Z50 F../tests/Computador_tb.vhd
+Z47 8../tests/Computador_tb.vhd
+Z48 F../tests/Computador_tb.vhd
 l0
 L17
 V^<T_kEk4AEg2XQQdZNHhg3
 !s100 TNE09aYh8d4DH0B==1NGH3
 R6
 32
-R45
+Z49 !s110 1590172933
 !i10b 1
-R46
+Z50 !s108 1590172933.000000
 Z51 !s90 -reportprogress|300|-work|work|../tests/Computador_tb.vhd|
 Z52 !s107 ../tests/Computador_tb.vhd|
 !i113 1
@@ -481,9 +481,9 @@ Z54 Vo0^?[JK2XThdniD6InYmB2
 Z55 !s100 ?0Dc;YYAbk1jD8;gclmAc2
 R6
 32
-R45
+R49
 !i10b 1
-R46
+R50
 R51
 R52
 !i113 1
@@ -529,7 +529,7 @@ R60
 R11
 R12
 Ecpu
-Z61 w1590171903
+Z61 w1590172081
 R1
 R2
 R3
@@ -541,7 +541,7 @@ VS?d@A_IIeUMBb1?zz5H7=0
 !s100 c7RNQ@bal?=>cRK1Je`fP2
 R6
 32
-R45
+R7
 !i10b 1
 R8
 Z64 !s90 -reportprogress|300|-work|work|../src/rtl/CPU.vhd|
@@ -559,7 +559,7 @@ VXAIbmUXBP[Kg;LVYMY`B73
 !s100 2LE;37Z1Q8`J2lRTGmfmc0
 R6
 32
-R45
+R7
 !i10b 1
 R8
 R64
@@ -815,9 +815,9 @@ VzFV;0jL6N8jRi`hk1413a3
 !s100 iX=YCebcH1iIF4JU;Bemj3
 R6
 32
-R45
+R49
 !i10b 1
-R46
+R50
 Z78 !s90 -reportprogress|300|-work|work|../src/rtl/Dispositivos/Screen/FIFO/FIFO16x4096.vhd|
 Z79 !s107 ../src/rtl/Dispositivos/Screen/FIFO/FIFO16x4096.vhd|
 !i113 1
@@ -833,9 +833,9 @@ V2=mCV]]FAVcS:HG]?iR4A0
 !s100 3]aYUBRe>i56LHZhO8Db10
 R6
 32
-R45
+R49
 !i10b 1
-R46
+R50
 R78
 R79
 !i113 1
@@ -1796,9 +1796,9 @@ V=bNF2]g@dOG`TlQ>M101X1
 !s100 FVjY3:j;NIKmkE_MY1]EV0
 R6
 32
-R45
+R7
 !i10b 1
-R46
+R8
 Z149 !s90 -reportprogress|300|-work|work|../src/rtl/Dispositivos/PLL/PLL_sim/PLL.vho|
 Z150 !s107 ../src/rtl/Dispositivos/PLL/PLL_sim/PLL.vho|
 !i113 1
@@ -1814,9 +1814,9 @@ V6EEg6Z=DzaB]]FP_n3z[E0
 !s100 U8G__JCLP[]:ol^z<_RUF2
 R6
 32
-R45
+R7
 !i10b 1
-R46
+R8
 R149
 R150
 !i113 1
@@ -1836,9 +1836,9 @@ V?W3fU8AJPJ2S[;=PMJaMU1
 !s100 Pe>;JD`:?:`O3@C?zeRZV0
 R6
 32
-R45
+R49
 !i10b 1
-R46
+R8
 Z154 !s90 -reportprogress|300|-work|work|../src/rtl/Dispositivos/RAM/RAM16K.vho|../src/rtl/Dispositivos/RAM/RAM32K.vho|
 Z155 !s107 ../src/rtl/Dispositivos/RAM/RAM32K.vho|../src/rtl/Dispositivos/RAM/RAM16K.vho|
 !i113 1
@@ -1855,9 +1855,9 @@ VHVVU?WRO;S54PX[0FX@@_0
 !s100 a1[;a0YD4?OYG@<KKKFiD3
 R6
 32
-R45
+R49
 !i10b 1
-R46
+R8
 R154
 R155
 !i113 1
@@ -1877,9 +1877,9 @@ VZz90P3gMlXY<Y^0ZI4JhN2
 !s100 gHKS[J7KSXWja8?lC_GIM0
 R6
 32
-R45
+R49
 !i10b 1
-R46
+R8
 R154
 R155
 !i113 1
@@ -1896,9 +1896,9 @@ VZKcceD7o?f8d3Fb_2IGQ]2
 !s100 9mU84TiDOTSUQM:VaX_d>3
 R6
 32
-R45
+R49
 !i10b 1
-R46
+R8
 R154
 R155
 !i113 1
@@ -2269,9 +2269,9 @@ V<fW;YLE1`;5Xoa:JJ<BVl2
 !s100 PdIZzEKidFRj33Z2dLFY00
 R6
 32
-R45
+R49
 !i10b 1
-R46
+R50
 Z178 !s90 -reportprogress|300|-work|work|../src/rtl/Dispositivos/ROM/ROM32K.vhd|
 Z179 !s107 ../src/rtl/Dispositivos/ROM/ROM32K.vhd|
 !i113 1
@@ -2288,9 +2288,9 @@ VOU<FNk_a::kImL^02n;:E1
 !s100 f8d55k74`7Y30K]zA2>iQ0
 R6
 32
-R45
+R49
 !i10b 1
-R46
+R50
 R178
 R179
 !i113 1
@@ -2312,9 +2312,9 @@ V@1Tn8IRUf@Z4_6OYbD><G1
 !s100 QI1MPGVz0LTl7ollmR;iT2
 R6
 32
-R45
+R49
 !i10b 1
-R46
+R50
 Z182 !s90 -reportprogress|300|-work|work|../src/rtl/Dispositivos/Screen/Screen.vho|
 Z183 !s107 ../src/rtl/Dispositivos/Screen/Screen.vho|
 !i113 1
@@ -2333,9 +2333,9 @@ V3ELK1::=VTZeQ88adLT7l2
 !s100 R80_hQdHa2:=2RHR;d6[C2
 R6
 32
-R45
+R49
 !i10b 1
-R46
+R50
 R182
 R183
 !i113 1
