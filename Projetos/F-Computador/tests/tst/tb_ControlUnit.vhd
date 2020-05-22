@@ -201,6 +201,16 @@ begin
            zx = '0' and nx = '0' and zy = '1' and ny = '1' and f = '0' and no = '0')
       report " **Falha** em jge %D falso" severity error;
 
+      --Conceito B
+      
+      -- jge %D : Nao salta
+    instruction <= "10" & "000" & "001100" & "0000" & "001";
+    zr <= '0';  ng <= '1';
+    wait until clk = '1';
+    assert(loadA  = '0' and loadD  = '0' and  loadM  = '0' and  loadPC = '0' and
+           zx = '0' and nx = '0' and zy = '1' and ny = '1' and f = '0' and no = '0')
+      report " **Falha** em jge %D falso" severity error;
+
     test_runner_cleanup(runner); -- Simulation ends here
 
 	wait;
