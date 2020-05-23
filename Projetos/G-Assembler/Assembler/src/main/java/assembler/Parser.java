@@ -95,7 +95,7 @@ public class Parser {
         }else {
             return CommandType.C_COMMAND;
         }
-        /* Parser feito */
+        /* Parser feito e testado */
     }
 
     /**
