@@ -68,12 +68,6 @@ public class SymbolTableTest {
         assertNotNull("Falha a criar o SymbolTable",table);
 
         try {
-        	org.junit.Assume.assumeNotNull( table.contains("X") );		// ignora test
-        } catch(Exception e) {
-        	org.junit.Assume.assumeNoException(e);
-        }
-
-        try {
 
             assertTrue("Testando se Tabela de Símbolos CONTÉM R0",table.contains("R0"));
             assertTrue("Verificando se R0 vale 0 na Tabela de Símbolos",table.getAddress("R0")==0);
