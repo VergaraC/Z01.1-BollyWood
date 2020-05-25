@@ -28,7 +28,7 @@ public class SymbolTable {
      * @param  address símbolo a ser armazenado na tabela de símbolos.
      */
     public void addEntry(String symbol, int address) {
-        /* TODO: implementar */
+        symbolTable.put(symbol, address);
     }
 
     /**
@@ -37,8 +37,11 @@ public class SymbolTable {
      * @return Verdadeiro se símbolo está na tabela de símbolos, Falso se não está na tabela de símbolos.
      */
     public Boolean contains(String symbol) {
-        /* TODO: implementar */
-        return null;
+        if (symbolTable.containsKey(symbol)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -47,8 +50,7 @@ public class SymbolTable {
      * @return valor numérico associado ao símbolo procurado.
      */
     public Integer getAddress(String symbol) {
-        /* TODO: implementar */
-    	return null;
+        return symbolTable.get(symbol);
     }
 
     /**
@@ -62,8 +64,8 @@ public class SymbolTable {
         // Exemplo: Registradores Virtuais
         String n;
         String join;
-        for (int i=0; i<16384; i++){
-            n= String.valueOf(i);;
+        for (int i=0; i<16384; i++) {
+            n = String.valueOf(i);
             join = "R" + n;
             System.out.println(join);
             this.addEntry(join, i);
