@@ -34,10 +34,10 @@ architecture tb of tb_ControlUnit is
   signal zr,ng                       : STD_LOGIC := '0';
   signal muxAM                   : STD_LOGIC := '0';
   signal muxALUI_A                   : STD_LOGIC := '0';
-  signal muxSD                       : STD_LOGIC := '0';
+  signal muxSD                       : STD_LOGIC := '0'; --conceito B
   signal zx, nx, zy, ny, f, no       : STD_LOGIC := '0';
   signal loadA, loadD,  loadM, loadPC  : STD_LOGIC := '0';
-  signal  loadS                      :STD_LOGIC := '0';
+  signal loadS                      :STD_LOGIC := '0'; --conceito B
 
 begin
 

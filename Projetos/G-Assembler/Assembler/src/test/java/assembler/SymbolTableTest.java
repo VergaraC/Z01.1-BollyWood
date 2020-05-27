@@ -16,7 +16,7 @@ import org.junit.runner.Description;
 
 import static org.junit.Assert.*;
 
-public class le fSymbolTableTest {
+public class SymbolTableTest {
 
     Parser parser = null;
     private static StringBuilder builder = new StringBuilder();
