@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class CodeTest  {
 
