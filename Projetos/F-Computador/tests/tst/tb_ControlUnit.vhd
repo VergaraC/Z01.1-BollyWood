@@ -22,7 +22,10 @@ architecture tb of tb_ControlUnit is
         muxALUI_A                   : out STD_LOGIC;                     -- mux que seleciona entre instrução e ALU para reg. A
         muxAM                       : out STD_LOGIC;                     -- mux que seleciona entre reg. A e Mem. RAM para ALU
         zx, nx, zy, ny, f, no       : out STD_LOGIC;                     -- sinais de controle da ALU
-        loadA, loadD, loadM, loadPC : out STD_LOGIC                      -- sinais de load do reg. A, reg. D, Mem. RAM e Program Counter
+        loadA, loadD, loadM, loadPC : out STD_LOGIC;                      -- sinais de load do reg. A, reg. D, Mem. RAM e Program Counter
+        
+        muxSD                       : out STD_LOGIC; --conceito B
+        loadS                       : out STD_LOGIC --conceito B
         );
   end component;
 
@@ -31,12 +34,14 @@ architecture tb of tb_ControlUnit is
   signal zr,ng                       : STD_LOGIC := '0';
   signal muxAM                   : STD_LOGIC := '0';
   signal muxALUI_A                   : STD_LOGIC := '0';
+  signal muxSD                       : STD_LOGIC := '0';
   signal zx, nx, zy, ny, f, no       : STD_LOGIC := '0';
-  signal loadA, loadD,  loadM, loadPC : STD_LOGIC := '0';
+  signal loadA, loadD,  loadM, loadPC  : STD_LOGIC := '0';
+  signal  loadS                      :STD_LOGIC := '0';
 
 begin
 
-	uCU: ControlUnit port map(instruction, zr, ng, muxALUI_A, muxAM, zx, nx, zy, ny, f, no, loadA, loadD, loadM, loadPC);
+	uCU: ControlUnit port map(instruction, zr, ng, muxALUI_A, muxAM, muxSD, zx, nx, zy, ny, f, no, loadA, loadD, loadM, loadPC, loadS);
 
 	clk <= not clk after 100 ps;
 
@@ -200,6 +205,20 @@ begin
     assert(loadA  = '0' and loadD  = '0' and  loadM  = '0' and  loadPC = '0' and
            zx = '0' and nx = '0' and zy = '1' and ny = '1' and f = '0' and no = '0')
       report " **Falha** em jge %D falso" severity error;
+
+      --Conceito B
+      
+    instruction <= "10" & "0000000000100000";
+    wait until clk = '1';
+    assert(muxSD = '0')
+      report "**Falha** em muxSD falso CONCEITO B" severity error;
+
+    --Restrador S
+    instruction <= "10" & "0000000001000000";
+    zr <= '0';  ng <= '1';
+    wait until clk = '1';
+    assert(loadS  = '1')
+      report " **Falha** em LOAD S falso CONCEITO B" severity error;
 
     test_runner_cleanup(runner); -- Simulation ends here
 
