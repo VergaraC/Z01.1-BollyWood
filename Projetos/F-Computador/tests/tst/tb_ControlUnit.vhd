@@ -220,6 +220,20 @@ begin
     assert(loadS  = '1')
       report " *Falha* em LOAD S falso CONCEITO B" severity error;
 
+      --Conceito B
+      
+    instruction <= "10" & "0000000000100000";
+    wait until clk = '1';
+    assert(muxSD = '0')
+      report "**Falha** em muxSD falso CONCEITO B" severity error;
+
+    --Restrador S
+    instruction <= "10" & "0000000001000000";
+    zr <= '0';  ng <= '1';
+    wait until clk = '1';
+    assert(loadS  = '1')
+      report " **Falha** em LOAD S falso CONCEITO B" severity error;
+
     test_runner_cleanup(runner); -- Simulation ends here
 
 	wait;

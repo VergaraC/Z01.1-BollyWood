@@ -21,8 +21,11 @@ entity ControlUnit is
                                                                      -- reg. A e Mem. RAM para ALU
                                                                      -- A  e Mem. RAM para ALU
 		zx, nx, zy, ny, f, no       : out STD_LOGIC;                     -- sinais de controle da ALU
-		loadA, loadD, loadM, loadPC : out STD_LOGIC               -- sinais de load do reg. A,
+		loadA, loadD, loadM, loadPC : out STD_LOGIC;               -- sinais de load do reg. A,
                                                                      -- reg. D, Mem. RAM e Program Counter
+
+        muxSD                       : out STD_LOGIC; --Mux conceito B 
+        loadS                       : out STD_LOGIC  --Register B
     );
 end entity;
 
@@ -35,10 +38,14 @@ begin
     loadM <= instruction(17) and instruction(5);
 
     loadA <= not instruction(17) or instruction(3);
+
+    loadS <= instruction(17) and instruction(6); --Conceito B
     
     muxALUI_A <= '1' when instruction(17) = '0' else '0';
 
     muxAM <= instruction(17) and instruction(13);
+    
+    muxSD <= instruction(17) and instruction(14); --Conceito B S=1
 
     zx <= instruction(17) and instruction(12);
 
