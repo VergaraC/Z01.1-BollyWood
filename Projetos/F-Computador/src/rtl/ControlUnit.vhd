@@ -25,7 +25,8 @@ entity ControlUnit is
                                                                      -- reg. D, Mem. RAM e Program Counter
 
         muxSD                       : out STD_LOGIC; --Mux conceito B 
-        loadS                       : out STD_LOGIC  --Register B
+        loadS                       : out STD_LOGIC;  --Register B
+        muxALUI_D                   : out STD_LOGIC --Mux conceito A
     );
 end entity;
 
@@ -41,7 +42,9 @@ begin
 
     loadS <= instruction(17) and instruction(6); --Conceito B
     
-    muxALUI_A <= '1' when instruction(17) = '0' else '0';
+    muxALUI_A <= '1' when instruction(17) = '0' and instruction(15)= '0' else '0';
+
+    muxALUI_D <= '1' when instruction(17) = '0' and instruction(15)= '1' else '0'; -- Conceito A
 
     muxAM <= instruction(17) and instruction(13);
     

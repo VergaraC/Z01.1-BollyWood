@@ -26,6 +26,7 @@ architecture tb of tb_ControlUnit is
         
         muxSD                       : out STD_LOGIC; --conceito B
         loadS                       : out STD_LOGIC --conceito B
+        muxALUI_D                   : out STD_LOGIC --conceito A
         );
   end component;
 
@@ -34,15 +35,14 @@ architecture tb of tb_ControlUnit is
   signal zr,ng                       : STD_LOGIC := '0';
   signal muxAM                   : STD_LOGIC := '0';
   signal muxALUI_A                   : STD_LOGIC := '0';
-
-  signal muxSD                       : STD_LOGIC := '0'; --conceito B
+  signal muxSD                       : STD_LOGIC := '0';
   signal zx, nx, zy, ny, f, no       : STD_LOGIC := '0';
   signal loadA, loadD,  loadM, loadPC  : STD_LOGIC := '0';
-  signal loadS                      :STD_LOGIC := '0'; --conceito B
-
+  signal  loadS                      :STD_LOGIC := '0';
+  signal muxALUI_D                   : STD_LOGIC := '0';
 begin
 
-	uCU: ControlUnit port map(instruction, zr, ng, muxALUI_A, muxAM, zx, nx, zy, ny, f, no, loadA, loadD, loadM, loadPC, muxSD, loadS);
+	uCU: ControlUnit port map(instruction, zr, ng, muxALUI_A, muxAM, zx, nx, zy, ny, f, no, loadA, loadD, loadM, loadPC, muxSD, loadS,muxALUI_D);
 
 	clk <= not clk after 100 ps;
 
@@ -234,9 +234,16 @@ begin
     wait until clk = '1';
     assert(loadS  = '1')
       report " **Falha** em LOAD S falso CONCEITO B" severity error;
+      
+
+
+      -- Conceito A
+    instruction <= "00" & "1111111111111111";
+    wait until clk = '1';
+    assert(loadA = '0' and loadM = '0' and loadD = '1')
+      report "TESTE 6: loadD" severity error;
 
     test_runner_cleanup(runner); -- Simulation ends here
 
 	wait;
   end process;
-end architecture;
