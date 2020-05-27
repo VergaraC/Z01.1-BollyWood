@@ -76,7 +76,7 @@ public class Parser {
      */
     public String command() {
         /* ja esta pronto */
-        return currentCommand;
+        return this.currentCommand;
     }
 
     /**
@@ -106,7 +106,7 @@ public class Parser {
      */
     public String symbol(String command) {
         /* TODO: implementar */
-    	return null;
+        return null;
     }
 
     /**
@@ -117,6 +117,10 @@ public class Parser {
      */
     public String label(String command) {
         /* TODO: implementar */
+        if (commandType(command) == CommandType.L_COMMAND) {
+            command = command.replace(":", "");
+            return command;
+        }
     	return null;
     }
 
@@ -128,7 +132,10 @@ public class Parser {
      */
     public String[] instruction(String command) {
         /* TODO: implementar */
-    	return null;
+        command = command.replace(","," ");
+        command = command.replace("  "," ");
+        String[] array = command.split(" ");
+        return array;
     }
 
 
