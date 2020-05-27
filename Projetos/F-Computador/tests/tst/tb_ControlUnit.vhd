@@ -34,6 +34,7 @@ architecture tb of tb_ControlUnit is
   signal zr,ng                       : STD_LOGIC := '0';
   signal muxAM                   : STD_LOGIC := '0';
   signal muxALUI_A                   : STD_LOGIC := '0';
+
   signal muxSD                       : STD_LOGIC := '0'; --conceito B
   signal zx, nx, zy, ny, f, no       : STD_LOGIC := '0';
   signal loadA, loadD,  loadM, loadPC  : STD_LOGIC := '0';
@@ -133,21 +134,21 @@ begin
     wait until clk = '1';
     assert(loadA  = '0' and loadD  = '1' and  loadM  = '0' and  loadPC = '0' and
            zx = '1' and nx = '0' and zy = '1' and ny = '0' and f = '1' and no = '0')
-      report " **Falha** mov %0, %D " severity error;
+      report " *Falha* mov %0, %D " severity error;
 
        -- mov (%A) -> D
     instruction <= "10" & "010" & "110000" & "0010" & "000";
     wait until clk = '1';
     assert(loadA  = '0' and loadD  = '1' and  loadM  = '0' and  loadPC = '0' and
            zx = '1' and nx = '1' and zy = '0' and ny = '0' and f = '0' and no = '0')
-      report " **Falha** mov (%A), %D " severity error;
+      report " *Falha* mov (%A), %D " severity error;
 
     -- mov 0 -> (A)
     instruction <= "10" & "000" & "101010" & "0100" & "000";
     wait until clk = '1';
     assert(loadA  = '0' and loadD  = '0' and  loadM  = '1' and  loadPC = '0' and
            zx = '1' and nx = '0' and zy = '1' and ny = '0' and f = '1' and no = '0')
-      report " **Falha** mov %0, %(A) " severity error;
+      report " *Falha* mov %0, %(A) " severity error;
 
     -----------------------------------------------
     -- ULA mem
@@ -157,14 +158,14 @@ begin
     wait until clk = '1';
     assert(loadA  = '0' and loadD  = '1' and  loadM  = '0' and  loadPC = '0' and
            zx = '0' and nx = '0' and zy = '0' and ny = '0' and f = '1' and no = '0')
-      report " **Falha** add %S, %A, %D " severity error;
+      report " *Falha* add %S, %A, %D " severity error;
 
     -- subw %D, (%A) -> %D
     instruction <= "10" & "001" & "010011" & "0010" & "000";
     wait until clk = '1';
     assert(loadA  = '0' and loadD  = '1' and  loadM  = '0' and  loadPC = '0' and
            zx = '0' and nx = '1' and zy = '0' and ny = '0' and f = '1' and no = '1')
-      report " **Falha** subw %S, %D " severity error;
+      report " *Falha* subw %S, %D " severity error;
 
     -----------------------------------------------
     -- JMP
@@ -173,7 +174,7 @@ begin
     instruction <= "10" & "000" & "000000" & "0000" & "111";
     wait until clk = '1';
     assert(loadA  = '0' and loadD  = '0' and  loadM  = '0' and  loadPC = '1')
-      report " **Falha** em jmp " severity error;
+      report " *Falha* em jmp " severity error;
 
     -- jne %D
     instruction <= "10" & "000" & "001100" & "0000" & "101";
@@ -181,14 +182,14 @@ begin
     wait until clk = '1';
     assert(loadA  = '0' and loadD  = '0' and  loadM  = '0' and  loadPC = '1' and
            zx = '0' and nx = '0' and zy = '1' and ny = '1' and f = '0' and no = '0')
-      report " **Falha** em jne %D" severity error;
+      report " *Falha* em jne %D" severity error;
 
     -- jne %D Falso
     instruction <= "00" & "000" & "001100" & "0000" & "101";
     zr <= '0';  ng <= '0';
     wait until clk = '1';
     assert(loadA  = '1' and loadD  = '0' and  loadM  = '0' and  loadPC = '0')
-      report " **Falha** em jne %D" severity error;
+      report " *Falha* em jne %D" severity error;
 
     -- jne %D : salta nao
     instruction <= "10" & "000" & "001100" & "0000" & "101";
@@ -196,7 +197,7 @@ begin
     wait until clk = '1';
     assert(loadA  = '0' and loadD  = '0' and  loadM  = '0' and  loadPC = '0' and
            zx = '0' and nx = '0' and zy = '1' and ny = '1' and f = '0' and no = '0')
-      report " **Falha** em jne %D" severity error;
+      report " *Falha* em jne %D" severity error;
 
     -- jge %D : Nao salta
     instruction <= "10" & "000" & "001100" & "0000" & "001";
@@ -204,7 +205,21 @@ begin
     wait until clk = '1';
     assert(loadA  = '0' and loadD  = '0' and  loadM  = '0' and  loadPC = '0' and
            zx = '0' and nx = '0' and zy = '1' and ny = '1' and f = '0' and no = '0')
-      report " **Falha** em jge %D falso" severity error;
+      report " *Falha* em jge %D falso" severity error;
+
+      --Conceito B
+      
+    instruction <= "10" & "0000000000100000";
+    wait until clk = '1';
+    assert(muxSD = '0')
+      report "*Falha* em muxSD falso CONCEITO B" severity error;
+
+    --Restrador S
+    instruction <= "10" & "0000000001000000";
+    zr <= '0';  ng <= '1';
+    wait until clk = '1';
+    assert(loadS  = '1')
+      report " *Falha* em LOAD S falso CONCEITO B" severity error;
 
       --Conceito B
       
