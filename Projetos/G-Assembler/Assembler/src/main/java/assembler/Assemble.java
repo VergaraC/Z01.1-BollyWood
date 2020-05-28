@@ -50,15 +50,18 @@ public class Assemble {
         // primeira passada pelo código deve buscar os labels
         // LOOP:
         // END:
-        SymbolTable symbolTable = new SymbolTable();
+
         Parser parser = new Parser(inputFile);
         int romAddress = 0;
         while (parser.advance()){
             if (parser.commandType(parser.command()) == Parser.CommandType.L_COMMAND) {
                 String label = parser.label(parser.command());
                 /* TODO: implementar */
-                if (!(symbolTable.contains(label))){
-                    symbolTable.addEntry(label, romAddress);
+                System.out.println("Label: " + label);
+                if (!(this.table.contains(label))){
+
+                    this.table.addEntry(label, romAddress);
+                    System.out.println("Label dentro if: " + label +" " + romAddress);
                 }
                 // deve verificar se tal label já existe na tabela,
                 // se não, deve inserir. Caso contrário, ignorar.
@@ -82,11 +85,15 @@ public class Assemble {
                     // deve verificar se tal símbolo já existe na tabela,
                     // se não, deve inserir associando um endereço de
                     // memória RAM a ele.
+                    System.out.println("Sybol"+ symbol);
+                    if (!(this.table.contains(symbol))){
+                        this.table.addEntry(symbol, ramAddress);
+                    }
                 }
             }
         }
         parser.close();
-        return table;
+        return this.table;
     }
 
     /**
@@ -110,8 +117,14 @@ public class Assemble {
             switch (parser.commandType(parser.command())){
                 /* TODO: implementar */
                 case C_COMMAND:
+                     String[] listD =parser.instruction(instruction);
+                     String ComedorD = "100" + Code.dest(listD) + Code.comp(listD) + Code.jump(listD);
+
                 break;
-            case A_COMMAND:
+                case A_COMMAND:
+                    String[] listA =parser.instruction(instruction);
+                    String ComedorA  = "100" + Code.dest(listA) + Code.comp(listA) + Code.jump(listA);
+
                 break;
             default:
                 continue;

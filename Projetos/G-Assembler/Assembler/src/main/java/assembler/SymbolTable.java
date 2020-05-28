@@ -67,7 +67,6 @@ public class SymbolTable {
         for (int i=0; i<16384; i++) {
             n = String.valueOf(i);
             join = "R" + n;
-            System.out.println(join);
             this.addEntry(join, i);
         }
         this.addEntry("SP", 0);
