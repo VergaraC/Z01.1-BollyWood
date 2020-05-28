@@ -76,7 +76,7 @@ public class Parser {
      */
     public String command() {
         /* ja esta pronto */
-        return this.currentCommand;
+        return currentCommand;
     }
 
     /**
@@ -106,7 +106,12 @@ public class Parser {
      */
     public String symbol(String command) {
         /* TODO: implementar */
-        return null;
+        if(commandType(command).equals(CommandType.A_COMMAND)){
+            int startPos = command.indexOf('$');
+            int endPos = command.indexOf(',');
+            return command.substring(startPos+1,endPos);
+        }
+        else return null;
     }
 
     /**
@@ -117,11 +122,10 @@ public class Parser {
      */
     public String label(String command) {
         /* TODO: implementar */
-        if (commandType(command) == CommandType.L_COMMAND) {
-            command = command.replace(":", "");
-            return command;
+        if(commandType(command).equals(CommandType.L_COMMAND)){
+            return command.substring(0, command.indexOf(':'));
         }
-    	return null;
+        else return null;
     }
 
     /**
@@ -132,10 +136,17 @@ public class Parser {
      */
     public String[] instruction(String command) {
         /* TODO: implementar */
-        command = command.replace(","," ");
-        command = command.replace("  "," ");
-        String[] array = command.split(" ");
-        return array;
+        command = command.replace("  ", " ");
+        command = command.replace("   ", " ");
+        command = command.replace("    ", " ");
+        command = command.replace("     ", " ");
+        command = command.replace(" ", ";");
+        command = command.replace(",", ";");
+        command = command.replace(";;", ";");
+
+        String[] instruction = command.split(";");
+
+        return instruction;
     }
 
 
