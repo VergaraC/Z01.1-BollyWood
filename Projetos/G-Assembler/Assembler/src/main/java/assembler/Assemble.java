@@ -50,12 +50,16 @@ public class Assemble {
         // primeira passada pelo código deve buscar os labels
         // LOOP:
         // END:
+        SymbolTable symbolTable = new SymbolTable();
         Parser parser = new Parser(inputFile);
         int romAddress = 0;
         while (parser.advance()){
             if (parser.commandType(parser.command()) == Parser.CommandType.L_COMMAND) {
                 String label = parser.label(parser.command());
                 /* TODO: implementar */
+                if (!(symbolTable.contains(label))){
+                    symbolTable.addEntry(label, romAddress);
+                }
                 // deve verificar se tal label já existe na tabela,
                 // se não, deve inserir. Caso contrário, ignorar.
             }
