@@ -106,7 +106,12 @@ public class Parser {
      */
     public String symbol(String command) {
         /* TODO: implementar */
-    	return null;
+        if(commandType(command).equals(CommandType.A_COMMAND)){
+            int startPos = command.indexOf('$');
+            int endPos = command.indexOf(',');
+            return command.substring(startPos+1,endPos);
+        }
+        else return null;
     }
 
     /**
@@ -117,7 +122,10 @@ public class Parser {
      */
     public String label(String command) {
         /* TODO: implementar */
-    	return null;
+        if(commandType(command).equals(CommandType.L_COMMAND)){
+            return command.substring(0, command.indexOf(':'));
+        }
+        else return null;
     }
 
     /**
@@ -128,7 +136,17 @@ public class Parser {
      */
     public String[] instruction(String command) {
         /* TODO: implementar */
-    	return null;
+        command = command.replace("  ", " ");
+        command = command.replace("   ", " ");
+        command = command.replace("    ", " ");
+        command = command.replace("     ", " ");
+        command = command.replace(" ", ";");
+        command = command.replace(",", ";");
+        command = command.replace(";;", ";");
+
+        String[] instruction = command.split(";");
+
+        return instruction;
     }
 
 
