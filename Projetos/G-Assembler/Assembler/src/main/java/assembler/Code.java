@@ -243,6 +243,7 @@ public class Code {
      */
     public static String toBinary(String symbol) {
         /* TODO: implementar */
+        System.out.println(symbol);
         int valor = Integer.valueOf(symbol);
         String binary = Integer.toBinaryString(valor);
         return String.format("%1$16s", binary).replace(" ", "0");

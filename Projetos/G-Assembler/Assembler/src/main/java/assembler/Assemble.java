@@ -57,16 +57,18 @@ public class Assemble {
             if (parser.commandType(parser.command()) == Parser.CommandType.L_COMMAND) {
                 String label = parser.label(parser.command());
                 /* TODO: implementar */
-                System.out.println("Label: " + label);
+
                 if (!(this.table.contains(label))){
 
                     this.table.addEntry(label, romAddress);
-                    System.out.println("Label dentro if: " + label +" " + romAddress);
+
                 }
                 // deve verificar se tal label já existe na tabela,
                 // se não, deve inserir. Caso contrário, ignorar.
+            }else{
+                romAddress++;
             }
-            romAddress++;
+
         }
         parser.close();
 
@@ -85,7 +87,7 @@ public class Assemble {
                     // deve verificar se tal símbolo já existe na tabela,
                     // se não, deve inserir associando um endereço de
                     // memória RAM a ele.
-                    System.out.println("Sybol"+ symbol);
+
                     if (!(this.table.contains(symbol))){
                         this.table.addEntry(symbol, ramAddress);
                     }
@@ -106,6 +108,7 @@ public class Assemble {
     public void generateMachineCode() throws FileNotFoundException, IOException{
         Parser parser = new Parser(inputFile);  // abre o arquivo e aponta para o começo
         String instruction  = "";
+        String symbol;
 
         /**
          * Aqui devemos varrer o código nasm linha a linha
@@ -117,22 +120,34 @@ public class Assemble {
             switch (parser.commandType(parser.command())){
                 /* TODO: implementar */
                 case C_COMMAND:
-                     String[] listD =parser.instruction(instruction);
-                     String ComedorD = "100" + Code.dest(listD) + Code.comp(listD) + Code.jump(listD);
+
+                     String[] listD = parser.instruction(instruction);
+                     instruction = "100" + Code.dest(listD) + Code.comp(listD) + Code.jump(listD);
 
                 break;
                 case A_COMMAND:
-                    String[] listA =parser.instruction(instruction);
-                    String ComedorA  = "100" + Code.dest(listA) + Code.comp(listA) + Code.jump(listA);
+
+                    System.out.println("Instruction: " +instruction);
+                    String roma =parser.symbol(instruction);
+                    System.out.println(roma);
+                    try {
+                        symbol = table.getAddress(roma).toString();
+
+                    }catch(Exception e){
+                        symbol = roma;
+                        System.out.println("Fora da tabela");
+                    }
+                    System.out.println(symbol);
+                    instruction  = "00" + Code.toBinary(symbol);
 
                 break;
             default:
                 continue;
             }
             // Escreve no arquivo .hack a instrução
-            if(outHACK!=null) {
+            //if(outHACK!=null) {
                 outHACK.println(instruction);
-            }
+            //}
             instruction = null;
         }
     }

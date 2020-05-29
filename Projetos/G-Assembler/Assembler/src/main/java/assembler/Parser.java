@@ -111,7 +111,9 @@ public class Parser {
             int endPos = command.indexOf(',');
             return command.substring(startPos+1,endPos);
         }
-        else return null;
+        else{
+            return null;
+        }
     }
 
     /**
@@ -136,13 +138,41 @@ public class Parser {
      */
     public String[] instruction(String command) {
         /* TODO: implementar */
-        command = command.replace("  ", " ");
+        try {
+            command = command.replace("  ", " ");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        try{
         command = command.replace("   ", " ");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        try{
         command = command.replace("    ", " ");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        try{
         command = command.replace("     ", " ");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        try{
         command = command.replace(" ", ";");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        try{
         command = command.replace(",", ";");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        try{
         command = command.replace(";;", ";");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         String[] instruction = command.split(";");
 
