@@ -117,9 +117,13 @@ public class Code {
 
         else if (mnemnonic[0].equals("movw")){
             switch (mnemnonic[1]){
+                case "$1"   : return "000111111";
+                case "$0"   : return "000101010";
+                case "$-1"  : return "000111010";
                 case "%A"   : return "000110000";
                 case "%D"   : return "000001100";
                 case "(%A)" : return "001110000";
+
                 default     : return "000000000";
             }
         }
@@ -243,6 +247,7 @@ public class Code {
      */
     public static String toBinary(String symbol) {
         /* TODO: implementar */
+        System.out.println(symbol);
         int valor = Integer.valueOf(symbol);
         String binary = Integer.toBinaryString(valor);
         return String.format("%1$16s", binary).replace(" ", "0");
