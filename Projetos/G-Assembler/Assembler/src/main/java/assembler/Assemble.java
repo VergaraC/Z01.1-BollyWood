@@ -108,6 +108,7 @@ public class Assemble {
     public void generateMachineCode() throws FileNotFoundException, IOException{
         Parser parser = new Parser(inputFile);  // abre o arquivo e aponta para o começo
         String instruction  = "";
+        String command;
         String symbol;
 
         /**
@@ -117,27 +118,31 @@ public class Assemble {
          * seguindo o instruction set
          */
         while (parser.advance()){
+            command = parser.command();
             switch (parser.commandType(parser.command())){
                 /* TODO: implementar */
+
                 case C_COMMAND:
 
-                     String[] listD = parser.instruction(instruction);
-                     instruction = "100" + Code.dest(listD) + Code.comp(listD) + Code.jump(listD);
+                     String[] listD = parser.instruction(command);
+                     instruction = "10" + Code.comp(listD) + Code.dest(listD) + Code.jump(listD);
 
                 break;
                 case A_COMMAND:
 
-                    System.out.println("Instruction: " +instruction);
-                    String roma =parser.symbol(instruction);
-                    System.out.println(roma);
+                    String roma =parser.symbol(command);
+                    //System.out.println("ROM:" + roma);
                     try {
-                        symbol = table.getAddress(roma).toString();
-
-                    }catch(Exception e){
+                        int teste = Integer.valueOf(roma);
                         symbol = roma;
-                        System.out.println("Fora da tabela");
+                        //System.out.println("Valor Real");
+                    }catch(Exception e){
+
+                        symbol = table.getAddress(roma).toString();
+                        //System.out.println("ROM traduzido: " + symbol);
+
                     }
-                    System.out.println(symbol);
+                    //System.out.println(symbol);
                     instruction  = "00" + Code.toBinary(symbol);
 
                 break;
