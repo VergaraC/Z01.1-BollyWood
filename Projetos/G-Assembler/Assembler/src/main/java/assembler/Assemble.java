@@ -154,6 +154,8 @@ public class Assemble {
                 outHACK.println(instruction);
             //}
             instruction = null;
+            command = null;
+            symbol = null;
         }
     }
 
