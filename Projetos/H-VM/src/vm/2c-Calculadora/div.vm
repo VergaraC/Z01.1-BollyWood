@@ -1,1 +1,35 @@
 function div 2
+    push argument 0
+    pop local 0
+    push constant 0
+    pop local 1
+
+label loop_start
+  push local 0
+  push constant 0
+  eq
+  if-goto end
+
+  push local 0
+  push constant 0
+  lt
+  if-goto end
+
+  push local 0
+  push argument 1
+  sub
+  pop local 0
+
+  push constant 1
+  push local 1
+  add
+  pop local 1
+
+  push local 0
+  push constant 0
+  gt
+  if-goto loop_start
+
+label end
+    push local 1
+    return

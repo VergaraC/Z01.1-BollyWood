@@ -18,6 +18,34 @@
 function Main.main 0
 
 
+push constant 0
+pop temp 1
+
+label start
+
+push constant 1
+push constant 1
+add
+pop temp 3
+
+push constant 1
+push temp 1
+add
+pop temp 1
+
+push temp 1
+push constant 55
+
+goto start
+
+push temp 1
+push constant 55
+
+eq
+if-goto END
+
+label END
+
 
 // esse loop sempre deve existir!
 // caso contrario o computador vai
